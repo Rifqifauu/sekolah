@@ -1,4 +1,4 @@
-<template><footer class="bg-red-900 text-white pt-12 pb-6 relative overflow-hidden">
+<template><footer class="bg-red-950 text-white pt-12 pb-6 relative overflow-hidden">
   <!-- Garis putih animasi -->
   <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-white via-red-300 to-white animate-pulse"></div>
 

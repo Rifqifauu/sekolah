@@ -11,6 +11,7 @@ use App\Http\Controllers\PesanController;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PeopleController;
 
 // Authentication Routes
@@ -28,6 +29,9 @@ Route::get('/struktur-organisasi', function () {
     return Inertia::render('StrukturOrganisasi');
 });
 Route::get( '/guru', [PeopleController::class, 'guru'])->name('people.guru');
+Route::get( '/ppdb', [PendaftaranController::class, 'index'])->name('pendaftaran');
+Route::get( '/ppdb/formulir', [PendaftaranController::class, 'create'])->name('pendaftaran.create');
+Route::post( '/ppdb', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
 Route::get( '/staff', [PeopleController::class, 'staff'])->name('people.staff');
 Route::get( '/ekstrakurikuler', [EkskulController::class, 'index'])->name('ekskul.index');
 Route::get( '/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');

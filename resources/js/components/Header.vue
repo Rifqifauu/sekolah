@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="fixed top-0 left-0 right-0 z-30 drop-shadow-xl bg-red-800 shadow-md">
+    <nav class="fixed top-0 left-0 right-0 z-30 drop-shadow-xl bg-red-900 shadow-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <!-- Logo -->
@@ -21,12 +21,12 @@
                 </svg>
               </button>
               <div class="absolute left-0 w-full h-3 invisible"></div>
-              <div class="absolute left-0 mt-0 min-w-[180px] z-40 bg-red-800/90 text-white rounded shadow-md 
+              <div class="absolute left-0 mt-0 min-w-[180px] z-40 bg-red-950/90 text-white rounded shadow-md 
                           opacity-0 invisible group-hover:opacity-100 group-hover:visible 
                           transition-all duration-300">
-                <a href="/artikel" class="block px-4 py-2 hover:bg-red-700">Artikel</a>
-                <a href="/pengumuman" class="block px-4 py-2 hover:bg-red-700">Pengumuman</a>
-                <a href="/galeri" class="block px-4 py-2 hover:bg-red-700">Galeri</a>
+                <a href="/artikel" class="block px-4 py-2 hover:bg-red-950">Artikel</a>
+                <a href="/pengumuman" class="block px-4 py-2 hover:bg-red-950">Pengumuman</a>
+                <a href="/galeri" class="block px-4 py-2 hover:bg-red-950">Galeri</a>
               </div>
             </div>
 
@@ -39,17 +39,19 @@
                 </svg>
               </button>
               <div class="absolute left-0 w-full h-3 invisible"></div>
-              <div class="absolute left-0 mt-0 min-w-[180px] z-40 bg-red-800/90 text-white rounded shadow-md 
+              <div class="absolute left-0 mt-0 min-w-[180px] z-40 bg-red-950/90 text-white rounded shadow-md 
                           opacity-0 invisible group-hover:opacity-100 group-hover:visible 
                           transition-all duration-300">
-                <a href="/struktur-organisasi" class="block px-4 py-2 hover:bg-red-700">Struktur Organisasi</a>
-                <a href="/guru" class="block px-4 py-2 hover:bg-red-700">Data Guru</a>
-                <a href="/staff" class="block px-4 py-2 hover:bg-red-700">Data Staff</a>
-                <a href="/ekstrakurikuler" class="block px-4 py-2 hover:bg-red-700">Ekstrakurikuler</a>
+                <a href="/struktur-organisasi" class="block px-4 py-2 hover:bg-red-950">Struktur Organisasi</a>
+                <a href="/guru" class="block px-4 py-2 hover:bg-red-950">Data Guru</a>
+                <a href="/staff" class="block px-4 py-2 hover:bg-red-950">Data Staff</a>
               </div>
             </div>
 
             <a href="/kontak" class="text-white hover:text-gray-200 px-3 py-2">Kontak</a>
+            <a href="/ekstrakurikuler" class="block text-white px-4 py-2">Ekstrakurikuler</a>
+            <a href="/ppdb" class="block text-white px-4 py-2">PPDB</a>
+
           </div>
 
           <!-- Search Form -->
@@ -58,7 +60,7 @@
               v-model="searchQuery"
               type="search"
               placeholder="Cari..."
-              class="w-full py-2 pl-10 pr-4 rounded-lg bg-gray-50 text-sm border border-gray-300 focus:ring focus:ring-red-700"
+              class="w-full py-2 pl-10 pr-4 rounded-lg bg-gray-50 text-sm border border-gray-300 focus:ring focus:ring-red-950"
             />
             <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,12 +84,12 @@
         </div>
 <!-- Mobile Menu -->
 <transition name="mobile-menu">
-  <div v-if="menuOpen" class="lg:hidden w-full left-0 bg-red-700 text-white shadow-md absolute  overflow-visible z-50">
-    <a href="/home" class="block px-4 py-2 hover:bg-red-600">Beranda</a>
+  <div v-if="menuOpen" class="lg:hidden w-full left-0 bg-red-950 text-white shadow-md absolute  overflow-visible z-50">
+    <a href="/home" class="block px-4 py-2 hover:bg-red-950">Beranda</a>
 
     <!-- Media Dropdown -->
     <div class="relative">
-      <button @click="toggleMobileDropdown('media')" class="w-full text-left px-4 py-2 hover:bg-red-600 flex justify-between items-center">
+      <button @click="toggleMobileDropdown('media')" class="w-full text-left px-4 py-2 hover:bg-red-950 flex justify-between items-center">
         <span>Media</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
@@ -95,17 +97,17 @@
         </svg>
       </button>
       <transition name="dropdown">
-        <div v-show="openDropdown === 'media'" class="pl-4 bg-red-800">
-          <a href="/artikel" class="block px-4 py-2 hover:bg-red-600">Artikel</a>
-          <a href="/pengumuman" class="block px-4 py-2 hover:bg-red-600">Pengumuman</a>
-          <a href="/galeri" class="block px-4 py-2 hover:bg-red-600">Galeri</a>
+        <div v-show="openDropdown === 'media'" class="pl-4 bg-red-950">
+          <a href="/artikel" class="block px-4 py-2 hover:bg-red-950">Artikel</a>
+          <a href="/pengumuman" class="block px-4 py-2 hover:bg-red-950">Pengumuman</a>
+          <a href="/galeri" class="block px-4 py-2 hover:bg-red-950">Galeri</a>
         </div>
       </transition>
     </div>
 
     <!-- Profil Dropdown -->
     <div class="relative">
-      <button @click="toggleMobileDropdown('profil')" class="w-full text-left px-4 py-2 hover:bg-red-600 flex justify-between items-center">
+      <button @click="toggleMobileDropdown('profil')" class="w-full text-left px-4 py-2 hover:bg-red-950 flex justify-between items-center">
         <span>Profil</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
@@ -113,16 +115,17 @@
         </svg>
       </button>
       <transition name="dropdown">
-        <div v-show="openDropdown === 'profil'" class="pl-4 bg-red-800">
-          <a href="/struktur-organisasi" class="block px-4 py-2 hover:bg-red-600">Struktur Organisasi</a>
-          <a href="/guru" class="block px-4 py-2 hover:bg-red-600">Data Guru</a>
-          <a href="/staff" class="block px-4 py-2 hover:bg-red-600">Data Staff</a>
-          <a href="/ekstrakurikuler" class="block px-4 py-2 hover:bg-red-600">Ekstrakurikuler</a>
+        <div v-show="openDropdown === 'profil'" class="pl-4 bg-red-950">
+          <a href="/struktur-organisasi" class="block px-4 py-2 hover:bg-red-950">Struktur Organisasi</a>
+          <a href="/guru" class="block px-4 py-2 hover:bg-red-950">Data Guru</a>
+          <a href="/staff" class="block px-4 py-2 hover:bg-red-950">Data Staff</a>
         </div>
       </transition>
     </div>
 
-    <a href="/kontak" class="block px-4 py-2 hover:bg-red-600">Kontak</a>
+    <a href="/kontak" class="block px-4 py-2 hover:bg-red-950">Kontak</a>
+    <a href="/ppdb" class="block px-4 py-2 hover:bg-red-950">PPDB</a>
+    
   </div>
 </transition>
 
