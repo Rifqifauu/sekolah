@@ -21,16 +21,21 @@ return new class extends Migration
     $table->string('judul_hero')->nullable();
     $table->text('deskripsi_hero')->nullable();
     $table->string('gambar_hero')->nullable();
+    $table->string('gambar_hero1')->nullable();
+    $table->string('gambar_hero2')->nullable();
 
     // Sejarah
     $table->string('judul_sejarah')->nullable();
     $table->longText('deskripsi_sejarah')->nullable();
     $table->string('gambar_sejarah')->nullable();
+    $table->string('gambar_sejarah1')->nullable();
+    $table->string('gambar_sejarah2')->nullable();
 
     // Video Section
     $table->string('judul_video')->nullable();
     $table->text('deskripsi_video')->nullable();
     $table->string('url_video')->nullable();
+    //visi misi
     $table->text('visi')->nullable();
     $table->text('misi')->nullable();
 

@@ -41,8 +41,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 \App\Filament\Widgets\WebOverview::class,
-                \App\Filament\Widgets\MonthlyArticlesChart::class,
- 
+                \App\Filament\Widgets\MonthlyArticlesChart::class, 
             ])
             ->middleware([
                 EncryptCookies::class,

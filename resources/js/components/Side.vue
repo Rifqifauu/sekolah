@@ -1,7 +1,7 @@
 <template>
   <!-- Sidebar Popular Articles & Pengumuman -->
   <aside
-    class="w-full md:w-1/3 bg-white rounded-lg p-6 shadow-lg md:border-l-4 md:border-red-600 overflow-hidden"
+    class="w-full md:w-1/3 bg-white rounded-lg p-6 shadow-lg md:border-l-4 md:border-red-950 overflow-hidden"
     data-aos="fade-up"
     data-aos-delay="200"
     data-aos-anchor-placement="top-bottom"
@@ -9,10 +9,10 @@
     <!-- Artikel Populer Section -->
     <div class="mb-10">
       <h2
-        class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-red-500 pb-3 inline-block relative"
+        class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-red-900 pb-3 inline-block relative"
       >
-        <span class="text-red-600">Artikel</span> Populer
-        <div class="absolute -bottom-0.5 left-0 w-12 h-1 bg-red-600 rounded-full"></div>
+        <span class="text-red-950">Artikel</span> Populer
+        <div class="absolute -bottom-0.5 left-0 w-12 h-1 bg-red-950 rounded-full"></div>
       </h2>
       
       <ul class="space-y-4">
@@ -23,14 +23,14 @@
         >
           <div class="flex items-start gap-3">
             <div
-              class="flex-shrink-0 w-8 h-8 mt-1 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-lg flex items-center justify-center font-semibold text-md select-none shadow-sm"
+              class="flex-shrink-0 w-8 h-8 mt-1 bg-gradient-to-r from-red-950 to-red-900 text-white rounded-lg flex items-center justify-center font-semibold text-md select-none shadow-sm"
             >
               {{ index + 1 }}
             </div>
             <div class="flex-1 min-w-0">
               <a
                 :href="`/artikel/${item.slug}`"
-                class="text-gray-800 font-semibold hover:text-red-600 transition-colors duration-200 line-clamp-2 block mb-1"
+                class="text-gray-800 font-semibold hover:text-red-950 transition-colors duration-200 line-clamp-2 block mb-1"
                 :title="`Baca artikel: ${item.judul}`"
               >
                 {{ item.judul }}
@@ -50,7 +50,7 @@
       </ul>
 
       <div class="mt-4 text-center">
-        <a href="/artikel" class="inline-block px-4 py-2 bg-white text-red-600 border border-red-500 rounded-md hover:bg-red-600 hover:text-white transition-colors duration-300 text-sm font-medium">
+        <a href="/artikel" class="inline-block px-4 py-2 bg-white text-red-950 border border-red-900 rounded-md hover:bg-red-950 hover:text-white transition-colors duration-300 text-sm font-medium">
           Lihat Semua Artikel
         </a>
       </div>
@@ -59,10 +59,10 @@
     <!-- Pengumuman Section -->
     <div>
       <h2
-        class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-red-500 pb-3 inline-block relative"
+        class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-red-900 pb-3 inline-block relative"
       >
-        <span class="text-red-600">Pengumuman</span> Terbaru
-        <div class="absolute -bottom-0.5 left-0 w-12 h-1 bg-red-600 rounded-full"></div>
+        <span class="text-red-950">Pengumuman</span> Terbaru
+        <div class="absolute -bottom-0.5 left-0 w-12 h-1 bg-red-950 rounded-full"></div>
       </h2>
       
       <ul class="space-y-4">
@@ -73,7 +73,7 @@
         >
           <div class="flex items-start gap-3">
             <div
-              class="flex-shrink-0 w-10 h-10 mt-1 bg-gradient-to-br from-red-500 to-red-700 text-white rounded-full flex flex-col items-center justify-center font-semibold text-xs leading-tight select-none shadow-sm"
+              class="flex-shrink-0 w-10 h-10 mt-1 bg-gradient-to-br from-red-900 to-red-700 text-white rounded-full flex flex-col items-center justify-center font-semibold text-xs leading-tight select-none shadow-sm"
             >
               <span>{{ new Date(item.created_at).getDate() }}</span>
               <span>{{ getShortMonth(item.created_at) }}</span>
@@ -81,7 +81,7 @@
             <div class="flex-1 min-w-0">
               <a
                 :href="`/pengumuman/${item.id}`"
-                class="text-gray-800 font-semibold hover:text-red-600 transition-colors duration-200 line-clamp-2 block mb-1"
+                class="text-gray-800 font-semibold hover:text-red-950 transition-colors duration-200 line-clamp-2 block mb-1"
                 :title="`Baca pengumuman: ${item.judul}`"
               >
                 {{ item.judul }}
@@ -101,7 +101,7 @@
       </ul>
 
       <div class="mt-4 text-center">
-        <a href="/pengumuman" class="inline-block px-4 py-2 bg-white text-red-600 border border-red-500 rounded-md hover:bg-red-600 hover:text-white transition-colors duration-300 text-sm font-medium">
+        <a href="/pengumuman" class="inline-block px-4 py-2 bg-white text-red-950 border border-red-900 rounded-md hover:bg-red-950 hover:text-white transition-colors duration-300 text-sm font-medium">
           Lihat Semua Pengumuman
         </a>
       </div>
