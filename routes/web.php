@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\KatalogController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,9 @@ use App\Http\Controllers\PesanController;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\PerpustakaanController;
 
 // Authentication Routes
 Auth::routes();
@@ -28,6 +31,10 @@ Route::get('/struktur-organisasi', function () {
     return Inertia::render('StrukturOrganisasi');
 });
 Route::get( '/guru', [PeopleController::class, 'guru'])->name('people.guru');
+Route::get( '/spmb', [PendaftaranController::class, 'index'])->name('pendaftaran');
+Route::get( '/form-pdf/{id}', [PendaftaranController::class, 'generatePDF'])->name('pendaftaran.pdf');
+Route::get( '/spmb/formulir', [PendaftaranController::class, 'create'])->name('pendaftaran.create');
+Route::post( '/spmb', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
 Route::get( '/staff', [PeopleController::class, 'staff'])->name('people.staff');
 Route::get( '/ekstrakurikuler', [EkskulController::class, 'index'])->name('ekskul.index');
 Route::get( '/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
@@ -36,12 +43,18 @@ Route::get( '/galeri/{id}', [GalleryController::class, 'show'])->name('galeri.sh
 Route::get( '/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show');
 Route::get( '/search', [ArtikelController::class, 'search'])->name('artikel.search');
 Route::get( '/pengumuman/{id}', [PengumumanController::class, 'show'])->name('pengumuman.show');
-
+Route::get('/perpustakaan', [PerpustakaanController::class,'index'])->name('perpustakaan.index');
+Route::get('/perpustakaan/search', [PerpustakaanController::class, 'search'])->name('perpustakaan.search');
+Route::post('pinjam-buku',[PerpustakaanController::class, 'pinjam'])->name('perpustakaan.pinjam');
+Route::post('kembalikan-buku',[PerpustakaanController::class, 'kembali'])->name('perpustakaan.kembali');
 Route::middleware('auth')->group(function () {
-  
+
 });
 
 
+Route::get('login', function (){
+    return redirect('/admin/login');
+});
 
 
 // Logout Route

@@ -12,12 +12,14 @@ class People extends Model
         'nama',
         'tipe',
         'nomor_induk',
+        'detail',
         'tempat_lahir',
         'tanggal_lahir',
         'jenis_kelamin',
         'alamat',
         'no_hp',
         'foto',
+        'nomor_nfc',
     ];
 
 }

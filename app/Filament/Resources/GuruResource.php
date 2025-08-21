@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\GuruResource\Pages;
-use App\Models\People; 
+use App\Models\People;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\TextInput;
@@ -16,6 +16,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class GuruResource extends Resource
 {
@@ -34,6 +35,7 @@ class GuruResource extends Resource
             Hidden::make('tipe')->default('guru'),
             TextInput::make('nama')->label('Nama')->required(),
             TextInput::make('nomor_induk')->label('NIP')->required(),
+            TextInput::make('nomor_nfc')->label('No NFC'),
             DatePicker::make('tanggal_lahir')->label('Tanggal Lahir')->required(),
             Select::make('jenis_kelamin')->label('Jenis Kelamin')->required()->options([
                 'L' => 'Laki-laki',
@@ -58,6 +60,7 @@ class GuruResource extends Resource
             ->columns([
                 TextColumn::make('nama')->label('Nama')->searchable(),
                 TextColumn::make('nomor_induk')->label('NIP'),
+                TextColumn::make('nomor_nfc')->label('No NFC'),
                 TextColumn::make('jenis_kelamin')->label('Jenis Kelamin')->formatStateUsing(fn ($state) => $state === 'L' ? 'Laki-laki' : 'Perempuan'),
                 TextColumn::make('tanggal_lahir')->label('Tanggal Lahir')->date(),
                 TextColumn::make('no_hp')->label('Nomor HP'),
@@ -77,7 +80,14 @@ class GuruResource extends Resource
     {
         return [];
     }
-
+ public static function canViewAny(): bool
+{
+    return Auth::user()->role === 'super_admin' || Auth::user()->role === 'admin';
+}
+        public static function shouldRegisterNavigation(): bool
+{
+    return Auth::user()->role === 'super_admin' || Auth::user()->role === 'admin';
+}
     public static function getPages(): array
     {
         return [

@@ -17,6 +17,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Illuminate\Support\Facades\Auth;
 
 class GalleryResource extends Resource
 {
@@ -62,12 +63,12 @@ class GalleryResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('images.0.path')
-                    ->label('Thumbnail')    
+                    ->label('Thumbnail')
                     ->height(150)
                     ->width(150),
                 TextColumn::make('nama_galeri')->sortable()->searchable()->wrap(),
                 TextColumn::make('deskripsi')->limit(50)->wrap(),
-                
+
                 Tables\Columns\TextColumn::make('created_at')->dateTime('d M Y'),
             ])
             ->filters([
@@ -76,7 +77,7 @@ class GalleryResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                 ->requiresConfirmation() 
+                 ->requiresConfirmation()
             ])
             ->bulkActions([
             ]);
@@ -88,7 +89,14 @@ class GalleryResource extends Resource
             //
         ];
     }
-
+    public static function canViewAny(): bool
+{
+    return Auth::user()->role != 'pustakawan' ;
+}
+//         public static function shouldRegisterNavigation(): bool
+// {
+//     return Auth::user()->role !== 'pustakawan' ;
+// }
     public static function getPages(): array
     {
         return [

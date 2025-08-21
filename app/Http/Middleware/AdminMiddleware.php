@@ -13,7 +13,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
 {
-    if (Auth::check() && in_array(Auth::user()->role, ['admin', 'super_admin'])) {
+    if (Auth::check() && in_array(Auth::user()->role, ['admin', 'super_admin','user', 'pustakawan'])) {
         return $next($request);
     }
     return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');

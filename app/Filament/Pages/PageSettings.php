@@ -10,6 +10,8 @@ use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use Illuminate\Support\Facades\Auth;
 
 class PageSettings extends Page implements HasForms
 {
@@ -23,11 +25,11 @@ class PageSettings extends Page implements HasForms
     protected static ?string $navigationGroup = 'Website';
 
     public ?array $data = [];
-    
+
     public function mount(): void
     {
         $pageSettings = PageSetting::first();
-        
+
         if ($pageSettings) {
             $this->form->fill($pageSettings->toArray());
         }
@@ -95,6 +97,25 @@ class PageSettings extends Page implements HasForms
                                             ->maxSize(5120)
                                             ->acceptedFileTypes(['image/jpeg', 'image/png'])
                                             ->helperText('Format: JPG, PNG. Maksimal 5MB. Resolusi disarankan: 1920x1080px'),
+                                        Forms\Components\FileUpload::make('gambar_hero1')
+                                            ->label('Gambar Hero')
+                                            ->image()
+                                            ->directory('homepage')
+                                            ->imagePreviewHeight(200)
+                                            ->imageResizeMode('contain')
+                                            ->maxSize(5120)
+                                            ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                                            ->helperText('Format: JPG, PNG. Maksimal 5MB. Resolusi disarankan: 1920x1080px'),
+                                        Forms\Components\FileUpload::make('gambar_hero2')
+                                            ->label('Gambar Hero')
+                                            ->image()
+                                            ->directory('homepage')
+                                            ->imagePreviewHeight(200)
+                                            ->imageResizeMode('contain')
+                                            ->maxSize(5120)
+                                            ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                                            ->helperText('Format: JPG, PNG. Maksimal 5MB. Resolusi disarankan: 1920x1080px'),
+
                                     ]),
                             ]),
 
@@ -116,7 +137,7 @@ class PageSettings extends Page implements HasForms
                                             ->placeholder('Masukkan deskripsi sejarah organisasi'),
 
                                         Forms\Components\FileUpload::make('gambar_sejarah')
-                                            ->label('Gambar Sejarah')
+                                            ->label('Gambar Profil')
                                             ->image()
                                             ->directory('homepage')
                                             ->imagePreviewHeight(200)
@@ -124,6 +145,25 @@ class PageSettings extends Page implements HasForms
                                             ->maxSize(5120)
                                             ->acceptedFileTypes(['image/jpeg', 'image/png'])
                                             ->helperText('Format: JPG, PNG. Maksimal 5MB'),
+                                        Forms\Components\FileUpload::make('gambar_sejarah1')
+                                            ->label('Gambar Profil')
+                                            ->image()
+                                            ->directory('homepage')
+                                            ->imagePreviewHeight(200)
+                                            ->imageResizeMode('contain')
+                                            ->maxSize(5120)
+                                            ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                                            ->helperText('Format: JPG, PNG. Maksimal 5MB'),
+                                        Forms\Components\FileUpload::make('gambar_sejarah2')
+                                            ->label('Gambar Profil')
+                                            ->image()
+                                            ->directory('homepage')
+                                            ->imagePreviewHeight(200)
+                                            ->imageResizeMode('contain')
+                                            ->maxSize(5120)
+                                            ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                                            ->helperText('Format: JPG, PNG. Maksimal 5MB'),
+
                                     ]),
                             ]),
 
@@ -149,6 +189,16 @@ class PageSettings extends Page implements HasForms
                                             ->url()
                                             ->placeholder('https://www.youtube.com/watch?v=...')
                                             ->helperText('Masukkan URL video YouTube atau platform video lainnya'),
+                                        Forms\Components\TextInput::make('url_video1')
+                                            ->label('URL Video')
+                                            ->url()
+                                            ->placeholder('https://www.youtube.com/watch?v=...')
+                                            ->helperText('Masukkan URL video YouTube atau platform video lainnya'),
+                                        Forms\Components\TextInput::make('url_vide2o')
+                                            ->label('URL Video')
+                                            ->url()
+                                            ->placeholder('https://www.youtube.com/watch?v=...')
+                                            ->helperText('Masukkan URL video YouTube atau platform video lainnya'),
                                     ]),
                             ]),
 
@@ -169,7 +219,31 @@ class PageSettings extends Page implements HasForms
                                             ->helperText('Format: JPG, PNG, PDF. Maksimal 5MB. Gunakan gambar dengan resolusi tinggi untuk hasil terbaik'),
                                     ]),
                             ]),
-                       Forms\Components\Tabs\Tab::make('Visi dan Misi')
+                              Forms\Components\Tabs\Tab::make('SPMB')
+    ->icon('heroicon-o-sparkles')
+    ->schema([
+        Forms\Components\Section::make('SPMB')
+            ->description('Masukkan informasi SPMB.')
+            ->schema([
+            Forms\Components\Grid::make(2)
+            ->schema([
+                Forms\Components\TextInput::make('tanggal_ppdb')
+                    ->label('Tanggal Pendaftaran')
+                    ->required()
+                    ->placeholder('Misal 10 - 21 Agustus 2025...'),
+                Forms\Components\TextInput::make('pengumuman_ppdb')
+                    ->label('Tanggal Pengumuman')
+                    ->required()
+                    ->placeholder('Misal 25 Agustus 2025...'),
+            ]),
+               Forms\Components\RichEditor::make('syarat_ppdb')
+    ->label('Syarat Pendaftaran')
+    ->columnSpanFull()
+
+                    ])
+
+            ]),
+     Forms\Components\Tabs\Tab::make('Visi dan Misi')
     ->icon('heroicon-o-sparkles')
     ->schema([
         Forms\Components\Section::make('Visi dan Misi')
@@ -180,21 +254,16 @@ class PageSettings extends Page implements HasForms
                     ->rows(4)
                     ->required()
                     ->placeholder('Masukkan visi di sini...'),
+      TinyEditor::make('misi')
+    ->profile('default') // atau 'simple', 'minimal'
+    ->fileAttachmentsDisk('public')
+    ->fileAttachmentsDirectory('uploads')
+    ->fileAttachmentsVisibility('public')
+    ->required() // tambahkan jika field wajib diisi
+    ->columnSpanFull(), // agar editor mengambil lebar penuh
 
-                Forms\Components\RichEditor::make('misi')
-                    ->label('Misi')
-                    ->required()
-                    ->placeholder('Masukkan misi di sini dalam format HTML...')
-                    ->toolbarButtons([
-                        'bold', 'italic', 'underline', 'strike',
-                        'bulletList', 'orderedList',
-                        'link', 'blockquote', 'codeBlock',
-                        'undo', 'redo',
-                    ])
-                    ->columnSpan('full'),
             ]),
     ]),
-
                     ])
                     ->columnSpanFull()
                     ->persistTabInQueryString(),
@@ -231,11 +300,18 @@ class PageSettings extends Page implements HasForms
             ->body('Semua pengaturan halaman telah berhasil disimpan.')
             ->send();
     }
-
+ public static function canViewAny(): bool
+{
+    return Auth::user()->role === 'super_admin' || Auth::user()->role === 'admin';
+}
+        public static function shouldRegisterNavigation(): bool
+{
+    return Auth::user()->role === 'super_admin' || Auth::user()->role === 'admin';
+}
     protected function getHeaderActions(): array
     {
         return [
-          
+
         ];
     }
     public function hasFullWidthFormActions(): bool

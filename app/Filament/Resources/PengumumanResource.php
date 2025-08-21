@@ -13,6 +13,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class PengumumanResource extends Resource
 {
@@ -72,6 +73,14 @@ class PengumumanResource extends Resource
         return [];
     }
 
+ public static function canViewAny(): bool
+{
+    return Auth::user()->role != 'pustakawan' ;
+}
+//         public static function shouldRegisterNavigation(): bool
+// {
+//     return Auth::user()->role !== 'pustakawan' ;
+// }
     public static function getPages(): array
     {
         return [

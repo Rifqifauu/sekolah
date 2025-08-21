@@ -5,13 +5,13 @@
       <div class="flex flex-col lg:flex-row gap-10">
         <div class="w-full lg:w-2/3 space-y-8">
           <div class="relative mb-10">
-            <div class="absolute -left-2 top-0 w-20 h-20 bg-red-500 opacity-10 rounded-full"></div>
-            <div class="absolute -left-1 top-1 w-12 h-12 bg-red-400 opacity-20 rounded-full"></div>
+            <div class="absolute -left-2 top-0 w-20 h-20 bg-green-500 opacity-10 rounded-full"></div>
+            <div class="absolute -left-1 top-1 w-12 h-12 bg-green-400 opacity-20 rounded-full"></div>
             <div class="flex items-center mb-2">
-              <div class="w-1.5 h-10 bg-gradient-to-b from-red-400 to-red-600 rounded-full mr-4"></div>
+              <div class="w-1.5 h-10 bg-gradient-to-b from-green-400 to-green-600 rounded-full mr-4"></div>
               <h1 class="text-4xl font-bold text-gray-800 relative z-10">
                 Galeri
-                <span class="block h-3 w-24 bg-red-400 opacity-30 -mt-2 rounded"></span>
+                <span class="block h-3 w-24 bg-green-400 opacity-30 -mt-2 rounded"></span>
               </h1>
             </div>
             <p class="text-gray-600 pl-6">Koleksi momen terbaik kami dalam gambar</p>
@@ -26,7 +26,7 @@
               data-aos-duration="800"
               class="bg-white rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden group relative flex flex-col"
             >
-              
+
               <!-- Gambar dengan efek gradien dan ukuran yang konsisten -->
               <div class="h-48 sm:h-60 md:h-64 w-full overflow-hidden relative">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
@@ -42,8 +42,8 @@
               <div class="p-4 sm:p-6 flex flex-col border-t border-gray-100">
                 <div class="mb-3">
                   <div class="flex items-center mb-2">
-                    <span class="w-1 h-4 bg-red-500 rounded mr-2 flex-shrink-0"></span>
-                    <h2 class="text-lg sm:text-xl font-bold text-gray-800 group-hover:text-red-600 transition-colors duration-300 line-clamp-1">
+                    <span class="w-1 h-4 bg-green-500 rounded mr-2 flex-shrink-0"></span>
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800 group-hover:text-green-600 transition-colors duration-300 line-clamp-1">
                       {{ item.nama_galeri }}
                     </h2>
                   </div>
@@ -62,7 +62,7 @@
                 <div class="mt-auto pt-2">
                   <Link
                     :href="`/galeri/${item.id}`"
-                    class="inline-flex items-center text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 px-3 sm:px-5 py-1.5 sm:py-2 rounded-lg transition-all duration-300 shadow-sm hover:shadow"
+                    class="inline-flex items-center text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 px-3 sm:px-5 py-1.5 sm:py-2 rounded-lg transition-all duration-300 shadow-sm hover:shadow"
                   >
                     <span>Lihat Galeri</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-1 sm:ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,7 +74,7 @@
             </div>
           </div>
         </div>
-        
+
               <Side :popularArticles="popularArticles" :pengumuman="pengumuman" />
       </div>
     </div>

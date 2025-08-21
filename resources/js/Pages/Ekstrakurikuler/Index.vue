@@ -5,10 +5,10 @@
       <!-- Konten utama -->
       <div class="w-full lg:w-2/3 md:col-span-8 space-y-10">
         <div class="flex items-center space-x-4 mb-2">
-          <div class="w-1 h-8 bg-red-500 rounded-full"></div>
+          <div class="w-1 h-8 bg-green-500 rounded-full"></div>
           <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Ekstrakurikuler</h1>
         </div>
-        
+
         <div class="grid grid-cols-1 gap-8">
           <div
             v-for="item in ekstrakurikuler"
@@ -25,7 +25,7 @@
                   :alt="item.nama"
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-red-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div class="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <span class="text-white font-bold text-xl p-4">{{ item.nama }}</span>
                 </div>
               </div>
@@ -33,13 +33,13 @@
               <!-- Informasi -->
               <div class="md:w-3/5 p-6 flex flex-col justify-between bg-white">
                 <div>
-                  <h2 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-red-600 transition-colors duration-300">{{ item.nama }}</h2>
+                  <h2 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-green-600 transition-colors duration-300">{{ item.nama }}</h2>
                   <p class="text-gray-600 mb-6 line-clamp-3">{{ item.deskripsi }}</p>
-                  
+
                   <div class="grid grid-cols-2 gap-4 mb-6">
                     <div class="flex items-center space-x-2">
-                      <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                      <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                         </svg>
                       </div>
@@ -48,7 +48,7 @@
                         <p class="font-medium text-gray-800">{{ item.nama_pembina }}</p>
                       </div>
                     </div>
-                    
+
                     <div class="flex items-center space-x-2">
                       <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
@@ -60,7 +60,7 @@
                         <p class="font-medium text-gray-800">{{ item.nama_ketua }}</p>
                       </div>
                     </div>
-                    
+
                     <div class="flex items-center space-x-2">
                       <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
@@ -72,10 +72,10 @@
                         <p class="font-medium text-gray-800">{{ item.jadwal }}</p>
                       </div>
                     </div>
-                    
+
                     <div class="flex items-center space-x-2">
-                      <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                      <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                         </svg>
                       </div>
@@ -127,7 +127,7 @@ defineOptions({
 })
 
 onMounted(() => {
-      document.title = 'Ekstrakurikuler';          
+      document.title = 'Ekstrakurikuler';
 
   AOS.init({
     duration: 800,

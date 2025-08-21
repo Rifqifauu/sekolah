@@ -15,6 +15,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Facades\Filament;
 
 class UserResource extends Resource
 {
@@ -33,7 +34,7 @@ class UserResource extends Resource
                 ->label('Email'),
                 Forms\Components\TextInput::make('password')
                 ->password()
-                ->dehydrateStateUsing(fn ($state) => 
+                ->dehydrateStateUsing(fn ($state) =>
                     !empty($state) ? Hash::make($state) : null)
                 ->dehydrated(fn ($state) => filled($state))
                 ->required(fn (string $context): bool => $context === 'create'),
@@ -41,12 +42,24 @@ class UserResource extends Resource
     ->label('Role')
     ->options([
         'user' => 'User',
+        'pustakawan' => 'Pustakawan',
         'admin' => 'Admin',
         'super_admin' => 'Super Admin',
     ]),
 
             ]);
     }
+     public static function shouldRegisterNavigation(): bool
+    {
+        $plugin = Filament::getCurrentPanel()?->getPlugin('rmsramos/activitylog');
+
+        return $plugin && Auth::check() && Auth::user()->role === 'super_admin';
+    }
+    public static function canViewAny(): bool
+{
+    return Auth::user()->role === 'super_admin';
+}
+
 
     public static function table(Table $table): Table
     {
@@ -54,25 +67,26 @@ class UserResource extends Resource
         ->columns([
             Tables\Columns\TextColumn::make('name')
                 ->searchable()
-                ->sortable(),   
+                ->sortable(),
             Tables\Columns\TextColumn::make('email')
                 ->searchable()
-                ->sortable(), 
+                ->sortable(),
             Tables\Columns\TextColumn::make('role')
                 ->badge()
                 ->color(fn (string $state): string => match ($state) {
                     'admin' => 'success',
+                    'pustakawan' => 'danger',
                     'super_admin' => 'warning',
                     'user' => 'info',
                 })
                 ->searchable()
                 ->sortable(),
-                
+
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),
-                
+
             Tables\Columns\TextColumn::make('updated_at')
                 ->dateTime()
                 ->sortable()
@@ -93,7 +107,7 @@ class UserResource extends Resource
     }
     public static function getNavigationSort(): ?int
 {
-    return 12; 
+    return 12;
 }
     // public static function shouldRegisterNavigation(): bool
     // {

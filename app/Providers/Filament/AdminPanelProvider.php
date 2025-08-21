@@ -24,12 +24,12 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->brandName('Sekolahku')
+            ->brandName('FILAMENT SMK NUSAKA')
             ->id('admin')
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Red,
+                'primary' => Color::Green,
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
@@ -42,7 +42,6 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 \App\Filament\Widgets\WebOverview::class,
                 \App\Filament\Widgets\MonthlyArticlesChart::class,
- 
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -55,14 +54,15 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->authMiddleware([
-                Authenticate::class,
-                'role:admin|super_admin',
-            ])
+           ->authMiddleware([
+    Authenticate::class,
+    \App\Http\Middleware\AdminMiddleware::class,
+])
+
             ->plugins([
                 ActivitylogPlugin::make()
                 ->navigationGroup('Manajemen User'),
             ]);
-    
+
     }
 }

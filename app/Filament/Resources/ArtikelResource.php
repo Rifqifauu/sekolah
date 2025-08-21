@@ -5,13 +5,14 @@ use App\Filament\Resources\ArtikelResource\Pages;
 use App\Models\Artikel;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Form; 
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Forms\Components\RichEditor;
 use AmidEsfahani\FilamentTinyEditor\TinyEditor;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -24,6 +25,14 @@ class ArtikelResource extends Resource
     protected static ?string $navigationGroup = 'Konten';
     protected static ?string $navigationLabel = 'Artikel';
 
+     public static function canViewAny(): bool
+{
+    return Auth::user()->role !== 'pustakawan' ;
+}
+        public static function shouldRegisterNavigation(): bool
+{
+    return Auth::user()->role !== 'pustakawan' ;
+}
     public static function form(Form $form): Form
 {
     return $form->schema([
@@ -37,7 +46,7 @@ class ArtikelResource extends Resource
             ->suffixAction(
                 Action::make('generateSlug')
                     ->label('Auto')
-                      ->icon('heroicon-m-sparkles') 
+                      ->icon('heroicon-m-sparkles')
                     ->action(function ($state, callable $set, callable $get) {
                         $set('slug', Str::slug($get('judul') ?? ''));
                     })
@@ -54,8 +63,7 @@ class ArtikelResource extends Resource
     ->fileAttachmentsDirectory('uploads')      // folder upload file
     ->columnSpan('full')                        // full width
     ->required()
-    ->direction('ltr')                         // bisa juga 'auto' atau 'rtl'
-    ->resize('both'),  
+    ->resize('both'),
 
         Forms\Components\Select::make('kategori')
             ->options([

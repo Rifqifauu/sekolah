@@ -4,17 +4,17 @@
     <div class="flex-1 p-4 md:p-6 space-y-6">
       <!-- Header Section with Search -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-        <h1 class="text-2xl md:text-3xl font-extrabold text-red-700 border-b-4 border-red-500 pb-2 max-w-max">
+        <h1 class="text-2xl md:text-3xl font-extrabold text-green-700 border-b-4 border-green-500 pb-2 max-w-max">
           Daftar Guru
         </h1>
 
         <div class="w-full md:w-auto flex">
           <div class="relative w-full">
-            <input 
-              type="text" 
-              v-model="search" 
-              placeholder="Cari guru..." 
-              class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 w-full"
+            <input
+              type="text"
+              v-model="search"
+              placeholder="Cari guru..."
+              class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 w-full"
             />
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-2.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -25,7 +25,7 @@
 
       <!-- Loading State -->
       <div v-if="loading" class="flex justify-center items-center py-12">
-        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-500"></div>
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
       </div>
 
       <!-- Empty State -->
@@ -42,7 +42,7 @@
         <div
           v-for="(item, index) in paginatedGuru"
           :key="item.id"
-          class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden transition duration-300 hover:shadow-lg hover:border-red-200"
+          class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden transition duration-300 hover:shadow-lg hover:border-green-200"
           :data-aos="isAosEnabled ? 'fade-up' : ''"
           :data-aos-delay="isAosEnabled ? index * 50 : 0"
         >
@@ -50,42 +50,19 @@
             <img
               :src="item.foto ? `/storage/${item.foto}` : '/storage/people.png'"
               :alt="`Foto ${item.nama}`"
-              class="w-16 h-16 rounded-full object-cover flex-shrink-0 border-2 border-red-400"
+              class="w-16 h-16 rounded-full object-cover flex-shrink-0 border-2 border-green-400"
             />
             <div class="flex-1 min-w-0">
               <h2 class="text-lg font-bold text-gray-800 truncate">
                 {{ item.nama }}
               </h2>
-              <p class="text-xs font-medium px-2 py-1 rounded-full bg-red-100 text-red-700 inline-block mt-1">
+              <p class="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-700 inline-block mt-1">
                 {{ item.tipe }}
               </p>
             </div>
           </div>
 
           <div class="border-t border-gray-100"></div>
-
-          <div class="p-4 text-sm text-gray-700 space-y-2">
-            <div class="flex items-start">
-              <span class="text-red-600 w-28 flex-shrink-0">Nomor Induk:</span>
-              <span class="flex-1">{{ item.nomor_induk }}</span>
-            </div>
-            <div class="flex items-start">
-              <span class="text-red-600 w-28 flex-shrink-0">Tanggal Lahir:</span>
-              <span class="flex-1">{{ formatDate(item.tanggal_lahir) }}</span>
-            </div>
-            <div class="flex items-start">
-              <span class="text-red-600 w-28 flex-shrink-0">Jenis Kelamin:</span>
-              <span class="flex-1">{{ item.jenis_kelamin }}</span>
-            </div>
-            <div class="flex items-start">
-              <span class="text-red-600 w-28 flex-shrink-0">Alamat:</span>
-              <span class="flex-1 line-clamp-2">{{ item.alamat }}</span>
-            </div>
-            <div class="flex items-start">
-              <span class="text-red-600 w-28 flex-shrink-0">No HP:</span>
-              <span class="flex-1">{{ formatPhone(item.no_hp) }}</span>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -95,7 +72,7 @@
           @click="goToPage(currentPage - 1)"
           :disabled="currentPage === 1"
           class="px-3 py-1 rounded border text-sm font-medium"
-          :class="currentPage === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-red-600 border-red-300 hover:bg-red-50'"
+          :class="currentPage === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-green-600 border-green-300 hover:bg-green-50'"
         >
           Prev
         </button>
@@ -105,7 +82,7 @@
           :key="page"
           @click="goToPage(page)"
           class="px-3 py-1 rounded border text-sm font-medium"
-          :class="currentPage === page ? 'bg-red-600 text-white border-red-600' : 'bg-white text-red-600 border-red-300 hover:bg-red-50'"
+          :class="currentPage === page ? 'bg-green-600 text-white border-green-600' : 'bg-white text-green-600 border-green-300 hover:bg-green-50'"
         >
           {{ page }}
         </button>
@@ -114,7 +91,7 @@
           @click="goToPage(currentPage + 1)"
           :disabled="currentPage === totalPages"
           class="px-3 py-1 rounded border text-sm font-medium"
-          :class="currentPage === totalPages ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-red-600 border-red-300 hover:bg-red-50'"
+          :class="currentPage === totalPages ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-green-600 border-green-300 hover:bg-green-50'"
         >
           Next
         </button>
@@ -199,7 +176,7 @@ onMounted(() => {
     once: true,
     offset: 50
   })
-      document.title = 'Data Guru';          
+      document.title = 'Data Guru';
 
   window.addEventListener('resize', checkScreenSize)
 

@@ -11,6 +11,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class EkstrakurikulerResource extends Resource
 {
@@ -83,7 +84,15 @@ class EkstrakurikulerResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
+public static function canViewAny(): bool
+{
+    return Auth::user()->role != 'pustakawan' ;
+}
+//         public static function shouldRegisterNavigation(): bool
+// {
+//     return Auth::user()->role !== 'pustakawan' ;
+// }
+public static function getRelations(): array
     {
         return [
             //

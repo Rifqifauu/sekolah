@@ -27,7 +27,7 @@ class User extends Authenticatable implements FilamentUser
     ];
 
     public function canAccessPanel(Panel $panel): bool {
-        $result = in_array($this->role, ['admin', 'super_admin']);
+        $result = in_array($this->role, ['admin', 'super_admin','user','pustakawan']);
         error_log("Role: " . $this->role . ", Access: " . ($result ? "allowed" : "denied"));
         return $result;
     }
@@ -35,7 +35,7 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasMany(Artikel::class, 'id_user');
     }
-   
+
     /**
      * The attributes that should be hidden for serialization.
      *

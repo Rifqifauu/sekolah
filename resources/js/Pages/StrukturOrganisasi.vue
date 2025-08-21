@@ -6,8 +6,8 @@
         <div
           class="w-full md:w-2/3 bg-white contact-page max-w-full mx-auto rounded-xl sm:rounded-3xl py-5 px-6 shadow-xl"
         >
- <h1 class="text-2xl md:text-4xl font-bold text-red-800 mb-2">Struktur Organisasi</h1>
-            <div class="w-16 h-1 bg-red-700 rounded mb-4"></div>          <img
+ <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-2">Struktur Organisasi</h1>
+            <div class="w-16 h-1 bg-green-700 rounded mb-4"></div>          <img
             :src="'/storage/' + page_setting.gambar_struktur_organisasi"
             alt="Struktur Organisasi"
             class="w-full h-auto rounded"
